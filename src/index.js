@@ -9,6 +9,7 @@ import './index.css';
 import Layout from './Pages/Layout';
 import Navbar from "./Components/Navbar"
 import Login from './Pages/Login'
+import Ordering from './Pages/Ordering'
 import * as serviceWorker from './serviceWorker';
 
 function Home(){
@@ -23,6 +24,9 @@ ReactDOM.render(
       </Route>
       <Route path="/login">
         <Login/>
+      </Route>
+      <Route path="/ordering">
+        <Ordering/>
       </Route>
       <Route path="/">
         <Home/>
