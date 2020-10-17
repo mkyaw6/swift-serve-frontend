@@ -1,14 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from "react-router-dom";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+} from "react-router-dom";
 import './index.css';
-import App from './App';
+import Layout from './Pages/Layout';
+import Navbar from "./Components/Navbar"
+import Login from './Pages/Login'
 import * as serviceWorker from './serviceWorker';
 
+function Home(){
+  return <h1>Home</h1>
+}
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <Navbar userType='admin'/>
+    <Switch>
+      <Route path="/layout">
+        <Layout userType="customer"/>
+      </Route>
+      <Route path="/login">
+        <Login/>
+      </Route>
+      <Route path="/">
+        <Home/>
+      </Route>
+    </Switch>
+    {/* <App /> */}
   </BrowserRouter>,
+
   document.getElementById('root')
 );
 
