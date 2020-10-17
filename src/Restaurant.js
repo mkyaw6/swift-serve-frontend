@@ -26,6 +26,8 @@ const Editor = () => {
     vectorWidth: 0,
   });
   const [selectedShapeIds, setSelectedShapeIds] = useState([]);
+  const [from, setFrom] = useState(getCurrDate());
+  const [to, setTo] = useState(getCurrDate());
 
   const tables = items.map((item, index) => {
     const { id, height, width, x, y, type, reserved, seats, tableId } = item;
@@ -56,14 +58,24 @@ const Editor = () => {
     setItems(items)
   }
 
+  function getCurrDate() {
+    const now = new Date();
+    console.log(now.toISOString().split('.')[0])
+    return now.toISOString().split('.')[0];
+  }
+  
+
   return (
     <div class="ui grid">
       <div class="twelve wide">
           <List divided relaxed>
             <List.Item> <List.Content> <Label>Select a table to reserve</Label>  </List.Content></List.Item>
+            <List.Item> <List.Content>  <Label> From </Label> <input type="datetime-local" id="meeting-from" name="meeting-from" value={from} onChange={e=> setFrom(e.target.value)}></input>  </List.Content></List.Item>
+            <List.Item> <List.Content>  <Label>  To  </Label> <input type="datetime-local" min={from} id="meeting-to" name="meeting-to" value={to} onChange={e=> setTo(e.target.value)}></input>  </List.Content></List.Item>
             <List.Item> <List.Content> {selectedShapeIds.length > 0 ? <button className="ui tiny green button" onClick={handleReserve}>Reserve Table</button> : null} </List.Content></List.Item>
           </List>
       </div>
+      
       <div class="four wide">
         <ShapeEditor vectorWidth={vectorWidth} vectorHeight={vectorHeight}>
           <ImageLayer
