@@ -59,6 +59,39 @@
   flex-direction: column;
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.sidebox {
+  margin-top: 10%;
+  width: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inlinePlease {
+  display: inline;
+}
+span {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.roomPlease {
+  margin-right: 50%;
+}
 .specialBox {
   margin-top: 2%;
   display: flex;
@@ -67,8 +100,54 @@
   flex-direction: column;
 }
 
+.specialBox {
+  margin-top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.margleft {
+  margin-left: 30vh;
+}
+
+.marglefter {
+  margin-left: 38vh;
+}
+
 .name {
   color: #59cf6e !important;
+}
+
+.namePrice {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  letter-spacing: -0.006em;
+
+  /* Text / Primary */
+
+  color: #000000;
+}
+
+.ncrCaption {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height, or 133% */
+
+  letter-spacing: 0.004em;
+
+  /* Text / Secondary */
+
+  color: rgba(60, 60, 67, 0.6);
 }
 
 .ncrFormField {
