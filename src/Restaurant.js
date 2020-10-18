@@ -8,6 +8,7 @@ import {
 } from 'react-shape-editor';
 import { Container, Label, List, } from 'semantic-ui-react';
 import LayoutService  from './Services/LayoutService';
+import ReservationService  from './Services/ReservationService';
 import Table from './Components/Table'
 import Wall from './Components/Wall'
 
@@ -29,13 +30,22 @@ const Editor = (props) => {
   });
   const [selectedShapeIds, setSelectedShapeIds] = useState([]);
   const [from, setFrom] = useState(getCurrDate());
-  const [to, setTo] = useState(getCurrDate());
+  const [to, setTo] = useState(getHourFromNow());
 
   useEffect(() => {
     // console.log(oauth)
-    LayoutService.getLayout(oauth).then(
-      (val) => {
-        setItems(val)
+    LayoutService.getLayout(oauth)
+      .then((val) => {
+        const allStores = val;
+        ReservationService.getAvailableSeats(from,to,oauth)
+          .then((availableSet) => {
+            allStores.forEach((item, i) => {
+              console.log(item.id)
+              allStores[i].reserved = !(availableSet.has(item.id))
+              console.log(allStores[i])
+            })
+          })
+        setItems(allStores)
     })
   }, [])
 
@@ -58,6 +68,18 @@ const Editor = (props) => {
     }
   })
 
+  function updateAvailable() {
+    const allStores = items;
+    ReservationService.getAvailableSeats(from,to,oauth)
+      .then((availableSet) => {
+        allStores.forEach((item, i) => {
+          console.log(item.id)
+          allStores[i].reserved = !(availableSet.has(item.id))
+        })
+      })
+    setItems(allStores)
+  }
+
   function handleReserve() {
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
@@ -73,14 +95,28 @@ const Editor = (props) => {
     console.log(now.toISOString().split('.')[0])
     return now.toISOString().split('.')[0];
   }
+  function getHourFromNow() {
+    const now = new Date();
+    now.setHours(now.getHours() + 1);
+    console.log(now.toISOString().split('.')[0])
+    return now.toISOString().split('.')[0];
+  }
 
   return (
     <div class="ui grid">
       <div class="twelve wide">
           <List divided relaxed>
             <List.Item> <List.Content> <Label>Select a table to reserve</Label>  </List.Content></List.Item>
-            <List.Item> <List.Content>  <Label> From </Label> <input type="datetime-local" id="meeting-from" name="meeting-from" value={from} onChange={e=> setFrom(e.target.value)}></input>  </List.Content></List.Item>
-            <List.Item> <List.Content>  <Label>  To  </Label> <input type="datetime-local" min={from} id="meeting-to" name="meeting-to" value={to} onChange={e=> setTo(e.target.value)}></input>  </List.Content></List.Item>
+            <List.Item> <List.Content>  <Label> From </Label> <input type="datetime-local" id="meeting-from" name="meeting-from" value={from} 
+            onChange={e=> {
+              setFrom(e.target.value)
+              updateAvailable()
+            }}></input>  </List.Content></List.Item>
+            <List.Item> <List.Content>  <Label>  To  </Label> <input type="datetime-local" min={from} id="meeting-to" name="meeting-to" value={to}
+            onChange={e=> {
+              setTo(e.target.value)
+              updateAvailable()
+            }}></input>  </List.Content></List.Item>
             <List.Item> <List.Content> {selectedShapeIds.length > 0 ? <button className="ui tiny green button" onClick={handleReserve}>Reserve Table</button> : null} </List.Content></List.Item>
           </List>
       </div>
