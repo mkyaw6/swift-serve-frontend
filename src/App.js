@@ -36,8 +36,8 @@ export default function App() {
       <Route path="/login">
       <Login oauth = {oauth} handleoAuth = {handleoAuth} userType = {userType} handleUserType = {handleUserType}/>
       </Route>
-      <Route path="/ordering/:tableId">
-        <Ordering/>
+      <Route path="/ordering/:tableId/:from/:to">
+        <Ordering oauth = {oauth} handleoAuth = {handleoAuth} userType = {userType} handleUserType = {handleUserType}/>
       </Route>
       <Route path="/viewschedule">
         <ViewSchedule oauth = {oauth} />

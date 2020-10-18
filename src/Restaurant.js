@@ -120,7 +120,7 @@ const Editor = (props) => {
             }}></input>  </List.Content></List.Item>
             <List.Item> <List.Content> 
               {selectedShapeIds.length > 0 ? 
-                <Link to={`/ordering/${selectedShapeIds[0]}`} className="ui tiny green button" > Reserve </Link>
+                <Link to={`/ordering/${selectedShapeIds[0]}/${from}/${to}`} className="ui tiny green button" > Reserve </Link>
               : null} 
             </List.Content></List.Item>
           </List>
