@@ -3,6 +3,7 @@ import "../App.css"
 const request = require('request')
 
 
+
 export default function ViewSchedule(props){
 
     const [data, setData] = React.useState([])
@@ -36,28 +37,34 @@ export default function ViewSchedule(props){
         handleData(holder)
     }
 
+    function rowClicked(id){
+        console.log(id)
+    }
+
     return(
         <div>
             <div class = "specialBox">
         <h1 class = "ncrLargeTitle">Schedule:</h1>
         </div>
-        <table class = "ui celled table">
+        <table onCheck = {value=> console.log(value)} class = "ui celled table">
             <thead>
                 <tr>
                     <th>Start</th>
                     <th>End</th>
                     <th>Table #</th>
                     <th>Customer ID</th>
+                    <th>Order ID</th>
                 </tr>
             </thead>
             <tbody>
              {data.map((e, key) => {
                  return(
-                     <tr>
+                     <tr onClick = {() => {rowClicked(e.order_id)}}>
                          <td data-label = "Start">{e.start_time}</td>
                          <td data-label = "End">{e.end_time}</td>
                          <td data-label = "Table #">{e.table_id}</td>
                          <td data-label = "Customer ID">{e.customer_id}</td>
+                         <td data-label = "Order ID">{e.order_id}</td>
                      </tr>
                  )
              })}
