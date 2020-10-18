@@ -36,3 +36,55 @@
     transform: rotate(360deg);
   }
 }
+
+.addButton {
+  position: absolute;
+  width: 90px;
+  height: 40px;
+  left: 1259px;
+  top: 1256px;
+
+  /* UI / Blue */
+
+  border: 1px dashed #2e7df7;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.box {
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.ncrFormField {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  background: #ffffff;
+  /* Border / secondary */
+
+  text-align: center;
+  border: 1px solid rgba(60, 60, 67, 0.29);
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.margins {
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+
+.marginsides {
+  margin-right: 4%;
+  margin-left: 4%;
+}
+
+.ncrFormField:focus {
+  outline: none !important;
+  box-shadow: 0px 0px 8px #a0dffd;
+  border-radius: 8px;
+}
