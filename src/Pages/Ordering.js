@@ -7,7 +7,7 @@ import {Button} from "semantic-ui-react"
 const request = require('request')
 
 
-export default function Order (){
+export default function Ordering (props){
 
     const [data, setData] = React.useState([])
     const [order, setOrder] = React.useState([])
@@ -45,6 +45,7 @@ export default function Order (){
                  )
              })}
          </ul>
+         <p>{props.oauth}</p>
 
     </div>)
 

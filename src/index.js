@@ -11,29 +11,10 @@ import Navbar from "./Components/Navbar"
 import Login from './Pages/Login'
 import Ordering from './Pages/Ordering'
 import * as serviceWorker from './serviceWorker';
+import App from "./App"
 
-function Home(){
-  return <h1>Home</h1>
-}
 ReactDOM.render(
-  <BrowserRouter>
-    <Navbar userType='admin'/>
-    <Switch>
-      <Route path="/layout">
-        <Layout userType="customer"/>
-      </Route>
-      <Route path="/login">
-        <Login/>
-      </Route>
-      <Route path="/ordering">
-        <Ordering/>
-      </Route>
-      <Route path="/">
-        <Home/>
-      </Route>
-    </Switch>
-    {/* <App /> */}
-  </BrowserRouter>,
+  <App/>,
 
   document.getElementById('root')
 );
