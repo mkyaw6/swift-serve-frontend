@@ -33,9 +33,9 @@ export default function App() {
         <Layout oauth = {oauth} handleoAuth = {handleoAuth} userType={userType}/>
       </Route>
       <Route path="/login">
-        <Login oauth = {oauth} handleoAuth = {handleoAuth} userType = {userType} handleUserType = {handleUserType}/>
+      <Login oauth = {oauth} handleoAuth = {handleoAuth} userType = {userType} handleUserType = {handleUserType}/>
       </Route>
-      <Route path="/ordering">
+      <Route path="/ordering/:tableId">
         <Ordering/>
       </Route>
       <Route path="/viewschedule">

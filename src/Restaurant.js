@@ -6,6 +6,7 @@ import {
   SelectionLayer,
   wrapShape,
 } from 'react-shape-editor';
+import { Link } from "react-router-dom";
 import { Container, Label, List, } from 'semantic-ui-react';
 import LayoutService  from './Services/LayoutService';
 import ReservationService  from './Services/ReservationService';
@@ -117,7 +118,11 @@ const Editor = (props) => {
               setTo(e.target.value)
               updateAvailable()
             }}></input>  </List.Content></List.Item>
-            <List.Item> <List.Content> {selectedShapeIds.length > 0 ? <button className="ui tiny green button" onClick={handleReserve}>Reserve Table</button> : null} </List.Content></List.Item>
+            <List.Item> <List.Content> 
+              {selectedShapeIds.length > 0 ? 
+                <Link to={`/ordering/${selectedShapeIds[0]}`} className="ui tiny green button" > Reserve </Link>
+              : null} 
+            </List.Content></List.Item>
           </List>
       </div>
       

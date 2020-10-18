@@ -4,10 +4,13 @@ import React, { useEffect } from "react";
 // import routes from "../nav/Router";
 // import {navigate, useRoutes} from "hookrouter";
 import {Button} from "semantic-ui-react"
+import {useParams} from "react-router-dom"
 const request = require('request')
 
 
 export default function Ordering (props){
+    let { tableId } = useParams();
+    console.log(tableId)
 
     const [data, setData] = React.useState([])
     const [order, setOrder] = React.useState([])
