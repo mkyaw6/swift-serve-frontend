@@ -120,7 +120,7 @@ span {
   color: #59cf6e !important;
 }
 
-.namePrice {
+.ncrP {
   font-family: Inter;
   font-style: normal;
   font-weight: normal;
@@ -161,6 +161,29 @@ span {
   text-align: center;
   border: 1px solid rgba(60, 60, 67, 0.29);
   box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.ncrFormFieldTwo {
+  background: #ffffff;
+  /* Border / secondary */
+
+  margin-top: 1%;
+  margin-bottom: 1%;
+  padding-bottom: 0.5%;
+  padding-top: 0.5%;
+  text-align: center;
+  border: 1px solid rgba(60, 60, 67, 0.29);
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.lilSpace {
+  margin-top: 1%;
+}
+.ncrFormFieldTwo:focus {
+  outline: none !important;
+  box-shadow: 0px 0px 8px #a0dffd;
   border-radius: 8px;
 }
 

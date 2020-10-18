@@ -40,12 +40,9 @@ export default function Login (props){
               <div>
                 <input class = "ncrFormField" type = "password" placeholder = "Password" onChange = {(e) => handlePass(e)} label = "pass"/>
                 </div>
-                {/* <div>
-                </div> */}
-                <div class = "margins">
+                <div class = "lilSpace"/>
                 <Link to = "/home"><Button oauth = {props.oauth} onClick = {handleSubmit}>Log In</Button></Link>
-                </div>
-                <div/>
+                <div class = "lilSpace"/>
                 <Button onClick = {toggleAcc}>No Account?</Button>
             </div>
             )
@@ -53,15 +50,12 @@ export default function Login (props){
             return(
                 <div class = "box">
                   <h1 class ="ncrLargeTitle">Register</h1>
-                <input class = "ncrFormField" placeholder = "Email" onChange = {(e) => handleEmail(e)} label = "email"/>
-                <div/>
-                <input class = "ncrFormField" type = "password" placeholder = "Password" onChange = {(e) => handlePass(e)} label = "password"/>
-                <div/>
-                <input class = "ncrFormField" type = "password" placeholder = "Confirm Password" onChange = {(e) => handleConfirmPass(e)} label = "confirm password"/>
-                <div/>
-                <Button onClick = {handleRegister}>Register</Button>
-                <div/>
-                <Button onClick = {toggleAcc}>Have an Account?</Button>
+                  <input class = "ncrFormFieldTwo" placeholder = "Email" onChange = {(e) => handleEmail(e)} label = "email"/>
+                  <input class = "ncrFormFieldTwo" type = "password" placeholder = "Password" onChange = {(e) => handlePass(e)} label = "password"/>
+                  <input class = "ncrFormFieldTwo" type = "password" placeholder = "Confirm Password" onChange = {(e) => handleConfirmPass(e)} label = "confirm password"/>
+                  <Button onClick = {handleRegister}>Register</Button>
+                  <div class = "lilSpace"/>
+                  <Button onClick = {toggleAcc}>Have an Account?</Button>
                 </div>
             )
         }
