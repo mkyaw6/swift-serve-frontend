@@ -13,7 +13,6 @@ import React from "react";
 // import routes from "../nav/Router";
 // import {navigate, useRoutes} from "hookrouter";
 // import { scryRenderedDOMComponentsWithClass } from "react-dom/test-utils";
-import {navigate, useRoutes} from "hookrouter";
 import {Button} from "semantic-ui-react"
 import qs from "qs"
 import {
