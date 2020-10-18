@@ -49,25 +49,30 @@ export default function Ordering (props){
     const orderMap = processOrder();
     return(
     <div>
-         {/* <Button onClick = {populateMenu}>Populate Items</Button> */}
-         <div/>
-         <h1>Menu:</h1>
-         <DataList/>
-         <h1>Order:</h1>
-         <ul>
-            {Object.keys(orderMap).map((itemId) => {
-                let quantity = orderMap[itemId]
-                let item = getItemInfo(itemId)
-                // console.log(item)
-                return(
-                    <div>
-                        <li key = {itemId} value = {item.value}>{item.name}, Price: {item.price}, Quantity: {quantity}</li>
-                    </div>)
-            })}
-         </ul>
-         <button onClick={handleOrder}> Place Order </button>
-
-    </div>)
+            <div class = "row">
+                <div class = "column">
+                    <div class = "margleft">
+                    <h1 class = "ncrLargeTitle">Menu:</h1>
+                    </div>
+                    <DataList/>
+                </div>
+                <div class = "column">
+                    <h1 class = "marglefter ncrLargeTitle">Order:</h1>
+        
+                    {Object.keys(orderMap).map((itemId) => {
+                        let quantity = orderMap[itemId]
+                        let item = getItemInfo(itemId)
+                        // console.log(item)
+                        return(
+                            <div>
+                                <span class = "namePrice" key = {itemId} value = {item.value}>{item.name}, Price: ${item.price}, Quantity: {quantity}</span>
+                            </div>)
+                    })}
+                    <Button onClick={handleOrder}> Place Order </Button>
+                </div>
+         </div>
+        </div>
+    )
 
     function handleData(data){
         setData(data)
@@ -75,12 +80,19 @@ export default function Ordering (props){
 
     function DataList() {
         const listData = data.map((item) =>
-        <li>{item.name}, {item.price}
-            <Button class = "addButton" onClick = {() => addToOrder(item)}>Add One</Button>
-            <Button onClick = {() => removeFromOrder(item)}>Remove One</Button>
-            <div/>
-            {item.description}
-        </li>)
+        <div class = "row">
+            <div class = "column">
+                <span class = "namePrice">{item.name}, ${item.price}</span>
+                <p class = "ncrCaption">{item.description}</p>
+            </div>
+            <div class = "column">
+                <div class = "row">
+                    <Button class = "addButton" onClick = {() => addToOrder(item)}>Add</Button>
+                    <Button onClick = {() => removeFromOrder(item)}>Remove</Button>
+                </div>
+            </div>
+        </div>
+        )
         return(
             <ul>{listData}</ul>
         )
