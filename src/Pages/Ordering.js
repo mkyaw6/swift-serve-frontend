@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 // import routes from "../nav/Router";
 // import {navigate, useRoutes} from "hookrouter";
 import {Button} from "semantic-ui-react"
+import OrderingService from "../Services/OrderingService"
 // <<<<<<< main
 import {useParams} from "react-router-dom"
 // =======
@@ -14,7 +15,8 @@ const request = require('request')
 
 
 export default function Ordering (props){
-    let { tableId } = useParams();
+    let { from, to, tableId } = useParams();
+    const { oauth } = props
     console.log(tableId)
 
     const [data, setData] = React.useState([])
@@ -34,9 +36,17 @@ export default function Ordering (props){
         // .catch((e)=> console.log(e))
     },[]);
 
-
-
-
+    
+    function processOrder() {
+        let orderList = {}
+        order.forEach((item) => {
+            if (orderList[item.id]) { orderList[item.id] += 1}
+            else { orderList[item.id] = 1}
+        })
+        console.log(orderList)
+        return orderList
+    }
+    const orderMap = processOrder();
     return(
     <div>
          {/* <Button onClick = {populateMenu}>Populate Items</Button> */}
@@ -45,15 +55,17 @@ export default function Ordering (props){
          <DataList/>
          <h1>Order:</h1>
          <ul>
-             {order.map((e, keyTwo) => {
-                 return(
-                     <div>
-                         <li key = {keyTwo} value = {e.value}>{e.name}, {e.price}</li>
-                     </div>
-                 )
-             })}
+            {Object.keys(orderMap).map((itemId) => {
+                let quantity = orderMap[itemId]
+                let item = getItemInfo(itemId)
+                // console.log(item)
+                return(
+                    <div>
+                        <li key = {itemId} value = {item.value}>{item.name}, Price: {item.price}, Quantity: {quantity}</li>
+                    </div>)
+            })}
          </ul>
-         <p>{props.oauth}</p>
+         <button onClick={handleOrder}> Place Order </button>
 
     </div>)
 
@@ -82,6 +94,16 @@ export default function Ordering (props){
     //     )
     // }
 
+    
+    function getItemInfo(itemId) {
+        for (let i = 0; i < data.length; i++) {
+            console.log(data[i])
+            if (data[i].id == itemId) {
+                return data[i]
+            } 
+        }
+    }
+    
     function addItems(items){
         const len = items.length
         var holder = []
@@ -103,5 +125,12 @@ export default function Ordering (props){
             holder.splice(found, 1);
             setOrder(holder)
         }
+    }
+
+    function handleOrder() {
+        console.log(orderMap)
+        console.log(from)
+        console.log(to)
+        OrderingService.order(from, to, orderMap, tableId, oauth);
     }
 }
