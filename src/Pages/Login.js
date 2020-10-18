@@ -124,7 +124,7 @@ export default function Login (props){
         // props.handleoAuth(18)
         // console.log(email)
         // // console.log(pass)
-        // console.log(props.oauth)
+        console.log(props.oauth)
     }
 
     function handleRegister(){

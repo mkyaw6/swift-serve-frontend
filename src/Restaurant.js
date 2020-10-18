@@ -32,6 +32,7 @@ const Editor = (props) => {
   const [to, setTo] = useState(getCurrDate());
 
   useEffect(() => {
+    // console.log(oauth)
     LayoutService.getLayout(oauth).then(
       (val) => {
         setItems(val)
@@ -72,7 +73,6 @@ const Editor = (props) => {
     console.log(now.toISOString().split('.')[0])
     return now.toISOString().split('.')[0];
   }
-  
 
   return (
     <div class="ui grid">
