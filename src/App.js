@@ -11,7 +11,7 @@ import Navbar from "./Components/Navbar"
 import Login from './Pages/Login'
 import Home from './Pages/Home'
 import Ordering from './Pages/Ordering'
-import * as serviceWorker from './serviceWorker';
+import OrderDetail from './Pages/OrderDetail'
 import ViewSchedule from './Pages/ViewSchedule'
 export default function App() {
   const [oauth, setOAuth] = React.useState("")
@@ -38,6 +38,9 @@ export default function App() {
       </Route>
       <Route path="/ordering/:tableId/:from/:to">
         <Ordering oauth = {oauth} handleoAuth = {handleoAuth} userType = {userType} handleUserType = {handleUserType}/>
+      </Route>
+      <Route path="/orderDetail/:orderId">
+        <OrderDetail oauth = {oauth} handleoAuth = {handleoAuth} userType = {userType} handleUserType = {handleUserType}/>
       </Route>
       <Route path="/viewschedule">
         <ViewSchedule oauth = {oauth} />

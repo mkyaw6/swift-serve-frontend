@@ -18,6 +18,7 @@ const OrderingService = {
     result = JSON.parse(result.body)
     // console.log(output)
     // return output
+    return result
   },
 }
 

@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import {Button} from "semantic-ui-react"
 import OrderingService from "../Services/OrderingService"
 // <<<<<<< main
-import {useParams} from "react-router-dom"
+import {useParams, Redirect} from "react-router-dom"
 // =======
 // import "../App.css"
 // >>>>>>> ryan2  removed in a merge
@@ -21,6 +21,8 @@ export default function Ordering (props){
 
     const [data, setData] = React.useState([])
     const [order, setOrder] = React.useState([])
+    const [redirect, setRedirect] = React.useState(false)
+    const [orderId, setOrderId] = React.useState(-1)
 
     useEffect(() => {
     
@@ -47,6 +49,7 @@ export default function Ordering (props){
         return orderList
     }
     const orderMap = processOrder();
+    if (redirect) { return <Redirect to={`/orderDetail/${orderId}`}/>}
     return(
     <div>
             <div class = "row">
@@ -140,9 +143,12 @@ export default function Ordering (props){
     }
 
     function handleOrder() {
-        console.log(orderMap)
-        console.log(from)
-        console.log(to)
-        OrderingService.order(from, to, orderMap, tableId, oauth);
+        OrderingService.order(from, to, orderMap, tableId, oauth)
+        .then((val) => {
+            console.log(val)
+            console.log(val.order_id)
+            setOrderId(val.order_id)
+            setRedirect(true)
+        });
     }
 }

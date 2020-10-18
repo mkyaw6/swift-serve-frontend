@@ -13,7 +13,6 @@ import React from "react";
 // import routes from "../nav/Router";
 // import {navigate, useRoutes} from "hookrouter";
 // import { scryRenderedDOMComponentsWithClass } from "react-dom/test-utils";
-import {navigate, useRoutes} from "hookrouter";
 import {Button} from "semantic-ui-react"
 import qs from "qs"
 import {
@@ -34,15 +33,15 @@ export default function Login (props){
     if (hasAcc === true){
         return(
             <div class = "box">
+              <h1 class ="ncrLargeTitle">Login</h1>
               <div>
                 <input class = "ncrFormField" placeholder = "Email" onChange = {(e) => handleEmail(e)} label = "email"/>
               </div>
               <div>
                 <input class = "ncrFormField" type = "password" placeholder = "Password" onChange = {(e) => handlePass(e)} label = "pass"/>
                 </div>
-                <div>
-                </div>
-                {/* <Button onClick = {() => navHandler("order")} variant = "contained" title="login">poog</Button> */}
+                {/* <div>
+                </div> */}
                 <div class = "margins">
                 <Link to = "/home"><Button oauth = {props.oauth} onClick = {handleSubmit}>Log In</Button></Link>
                 </div>
@@ -53,6 +52,7 @@ export default function Login (props){
         } else {
             return(
                 <div class = "box">
+                  <h1 class ="ncrLargeTitle">Register</h1>
                 <input class = "ncrFormField" placeholder = "Email" onChange = {(e) => handleEmail(e)} label = "email"/>
                 <div/>
                 <input class = "ncrFormField" type = "password" placeholder = "Password" onChange = {(e) => handlePass(e)} label = "password"/>

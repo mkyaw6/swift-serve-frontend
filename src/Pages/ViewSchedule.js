@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import {Redirect} from "react-router-dom"
 import "../App.css"
 const request = require('request')
 
@@ -7,6 +8,8 @@ const request = require('request')
 export default function ViewSchedule(props){
 
     const [data, setData] = React.useState([])
+    const [redirect, setRedirect] = React.useState(false)
+    const [orderId, setOrderId] = React.useState(-1)
 
     useEffect(() => {
         const optionsTwo = {
@@ -38,9 +41,10 @@ export default function ViewSchedule(props){
     }
 
     function rowClicked(id){
-        console.log(id)
+        setOrderId(id)
+        setRedirect(true)
     }
-
+    if (redirect) { return <Redirect to={`/orderDetail/${orderId}`}/>}
     return(
         <div>
             <div class = "specialBox">
@@ -58,6 +62,7 @@ export default function ViewSchedule(props){
             </thead>
             <tbody>
              {data.map((e, key) => {
+                 console.log(e)
                  return(
                      <tr onClick = {() => {rowClicked(e.order_id)}}>
                          <td data-label = "Start">{e.start_time}</td>
