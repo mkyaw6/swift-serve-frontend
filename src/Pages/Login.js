@@ -27,9 +27,9 @@ export default function Login (props){
     if (hasAcc === true){
         return(
             <div>
-                <input placeholder = "email" onChange = {(e) => handleEmail(e)} label = "email"/>
+                <input placeholder = "Email" onChange = {(e) => handleEmail(e)} label = "email"/>
                 <div/>
-                <input placeholder = "pass" onChange = {(e) => handlePass(e)} label = "pass"/>
+                <input type = "password" placeholder = "Password" onChange = {(e) => handlePass(e)} label = "pass"/>
                 <div>
                 </div>
                 {/* <Button onClick = {() => navHandler("order")} variant = "contained" title="login">poog</Button> */}
@@ -41,11 +41,11 @@ export default function Login (props){
         } else {
             return(
                 <div>
-                <input placeholder = "email" onChange = {(e) => handleEmail(e)} label = "email"/>
+                <input placeholder = "Email" onChange = {(e) => handleEmail(e)} label = "email"/>
                 <div/>
-                <input placeholder = "Password" onChange = {(e) => handlePass(e)} label = "password"/>
+                <input type = "password" placeholder = "Password" onChange = {(e) => handlePass(e)} label = "password"/>
                 <div/>
-                <input placeholder = "Confirm Password" onChange = {(e) => handleConfirmPass(e)} label = "confirm password"/>
+                <input type = "password" placeholder = "Confirm Password" onChange = {(e) => handleConfirmPass(e)} label = "confirm password"/>
                 <div/>
                 <Button onClick = {handleRegister}>Register</Button>
                 <div/>
@@ -86,7 +86,7 @@ export default function Login (props){
         request.post(options, function (error, response, body) {
           if(error){
             console.error('error here lol:', error); // Print the error if one occurred
-          }
+          } else {
         // console.log(JSON.parse(body).access_token)
         props.handleoAuth(JSON.parse(body).access_token)
         optionsTwo = {
@@ -95,17 +95,19 @@ export default function Login (props){
             "Authorization": "Bearer " + (JSON.parse(body).access_token)
           }
         };
-        request(optionsTwo, function (error, repsonse, body) {
+        request(optionsTwo, function (error, repsonse, bodyTwo) {
           if(error){
           console.error('error there xd:', error);
-          }
-          // console.log(JSON.parse(body).is_owner)
-          if(JSON.parse(body).is_owner){
-            props.handleUserType("admin")
           } else {
+          // console.log(JSON.parse(body).is_owner)
+          if(JSON.parse(bodyTwo).is_owner){
+            props.handleUserType("admin")
+          } else if (JSON.parse(body).access_token) {
             props.handleUserType("customer")
           }
+        }
         });
+      }
           
         // };
         // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
