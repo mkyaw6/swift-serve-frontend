@@ -68,7 +68,7 @@ export default function Ordering (props){
                         // console.log(item)
                         return(
                             <div>
-                                <span class = "namePrice" key = {itemId} value = {item.value}>{item.name}, Price: ${item.price}, Quantity: {quantity}</span>
+                                <span class = "ncrP" key = {itemId} value = {item.value}>{item.name}, Price: ${item.price}, Quantity: {quantity}</span>
                             </div>)
                     })}
                     <Button onClick={handleOrder}> Place Order </Button>
@@ -85,7 +85,7 @@ export default function Ordering (props){
         const listData = data.map((item) =>
         <div class = "row">
             <div class = "column">
-                <span class = "namePrice">{item.name}, ${item.price}</span>
+                <span class = "ncrP">{item.name}, ${item.price}</span>
                 <p class = "ncrCaption">{item.description}</p>
             </div>
             <div class = "column">

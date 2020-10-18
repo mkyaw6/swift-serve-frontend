@@ -27,24 +27,24 @@ export default function OrderDetail (props){
     const { status } = orderDetail;
     console.log(orderItems)
     return(
-    <div>
-      <Container>
+      <div class = "box">
+    <div class = "column">
          <h1 class="ncrLargeTitle">Order Details:</h1>
          <List>
           <List.Item>
-            <List.Header>Order Id</List.Header>
+            <List.Header className = "ncrP">Order Id:</List.Header>
             {orderId}
           </List.Item>
           <List.Item>
-            <List.Header>Status:</List.Header>
+            <List.Header className = "ncrP">Status:</List.Header>
             {statusMap[status]}
           </List.Item>
           <List.Item>
-            <List.Header>Items: </List.Header>
+            <List.Header className = "ncrP">Items: </List.Header>
             {getOrderItemList(orderItems)}
           </List.Item>
         </List>
-      </Container>
+    </div>
     </div>)}
 
   
