@@ -38,7 +38,9 @@ export default function ViewSchedule(props){
 
     return(
         <div>
-        <h1>Schedule:</h1>
+            <div class = "specialBox">
+        <h1 class = "ncrLargeTitle">Schedule:</h1>
+        </div>
         <table class = "ui celled table">
             <thead>
                 <tr>

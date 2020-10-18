@@ -16,10 +16,10 @@ export default function Navbar(props) {
   <div class="ui borderless huge menu">
     <div class="ui container grid">
       <div class="computer only row">
-        <a class="header item">SwiftServe</a>
+        <a href = "https://github.com/mkyaw6/swift-serve-frontend" class="header item name">SwiftServe</a>
         <Link to="/home" class="item">Home </Link>
-        {props.oauth == "" ? <Link to="/login" className="item">Login</Link>: null}
-        {props.oauth != "" ? <Link onClick = {logout} to="/home" className = "item">Log Out</Link> : null}
+        {props.oauth == "" || props.oauth == undefined ? <Link to="/login" className="item">Login</Link>: null}
+        {props.oauth != "" && props.oauth != undefined ? <Link onClick = {logout} to="/home" className = "item">Log Out</Link> : null}
         <Link to="/layout" className="item">
           {props.userType == "admin" ? "Manage Layout" : "Reserve"}
         </Link>
