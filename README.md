@@ -8,4 +8,15 @@ bringing the brick-and-mortar experience into a software platform
 Saving time while saving lives, a common goal for all of us here. We've created an app that speeds, simplifies, and savvies the abilities of small to large restaurants to manage their floor in this covid era. Contactless cuisine, hot and ready at your desired time! Check out SwiftServe today.
 
 Check us out at: https://swift-serve-292910.uc.r.appspot.com/
+To try as an admin use:
+username: "owner1@example.com"
+password: "owner1"
+
+To try as a customer use:
+username: "customer1@example.com"
+password: "customer1"
+or register as a new user
+
 This repository serves as our frontend. Check out our backend repo at: https://github.com/RachitBhargava99/SwiftServe
+
+
