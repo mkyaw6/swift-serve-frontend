@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 // import routes from "../nav/Router";
 // import {navigate, useRoutes} from "hookrouter";
 import {Button} from "semantic-ui-react"
+import "../App.css"
 const request = require('request')
 
 
@@ -56,7 +57,7 @@ export default function Ordering (props){
     function DataList() {
         const listData = data.map((item) =>
         <li>{item.name}, {item.price}
-            <Button onClick = {() => addToOrder(item)}>Add One</Button>
+            <Button class = "addButton" onClick = {() => addToOrder(item)}>Add One</Button>
             <Button onClick = {() => removeFromOrder(item)}>Remove One</Button>
             <div/>
             {item.description}

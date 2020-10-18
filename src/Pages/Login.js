@@ -15,6 +15,7 @@ import React from "react";
 // import { scryRenderedDOMComponentsWithClass } from "react-dom/test-utils";
 import {Button} from "semantic-ui-react"
 import qs from "qs"
+import "../App.css"
 const request = require('request')
 
 
@@ -26,26 +27,31 @@ export default function Login (props){
 
     if (hasAcc === true){
         return(
-            <div>
-                <input placeholder = "Email" onChange = {(e) => handleEmail(e)} label = "email"/>
-                <div/>
-                <input type = "password" placeholder = "Password" onChange = {(e) => handlePass(e)} label = "pass"/>
+            <div class = "box">
+              <div>
+                <input class = "ncrFormField" placeholder = "Email" onChange = {(e) => handleEmail(e)} label = "email"/>
+              </div>
+              <div>
+                <input class = "ncrFormField" type = "password" placeholder = "Password" onChange = {(e) => handlePass(e)} label = "pass"/>
+                </div>
                 <div>
                 </div>
                 {/* <Button onClick = {() => navHandler("order")} variant = "contained" title="login">poog</Button> */}
+                <div class = "margins">
                 <Button oauth = {props.oauth} onClick = {handleSubmit}>Log In</Button>
+                </div>
                 <div/>
                 <Button onClick = {toggleAcc}>No Account?</Button>
             </div>
             )
         } else {
             return(
-                <div>
-                <input placeholder = "Email" onChange = {(e) => handleEmail(e)} label = "email"/>
+                <div class = "box">
+                <input class = "ncrFormField" placeholder = "Email" onChange = {(e) => handleEmail(e)} label = "email"/>
                 <div/>
-                <input type = "password" placeholder = "Password" onChange = {(e) => handlePass(e)} label = "password"/>
+                <input class = "ncrFormField" type = "password" placeholder = "Password" onChange = {(e) => handlePass(e)} label = "password"/>
                 <div/>
-                <input type = "password" placeholder = "Confirm Password" onChange = {(e) => handleConfirmPass(e)} label = "confirm password"/>
+                <input class = "ncrFormField" type = "password" placeholder = "Confirm Password" onChange = {(e) => handleConfirmPass(e)} label = "confirm password"/>
                 <div/>
                 <Button onClick = {handleRegister}>Register</Button>
                 <div/>

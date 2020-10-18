@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+import "../App.css"
 const request = require('request')
+
 
 export default function ViewSchedule(props){
 
