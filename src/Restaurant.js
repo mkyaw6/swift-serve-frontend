@@ -7,6 +7,7 @@ import {
   wrapShape,
 } from 'react-shape-editor';
 import { Container, Label, List, } from 'semantic-ui-react';
+import LayoutService  from './Services/LayoutService';
 import Table from './Components/Table'
 import Wall from './Components/Wall'
 
@@ -28,6 +29,14 @@ const Editor = () => {
   const [selectedShapeIds, setSelectedShapeIds] = useState([]);
   const [from, setFrom] = useState(getCurrDate());
   const [to, setTo] = useState(getCurrDate());
+
+  useEffect(() => {
+    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNjZlNDczMmYtMTdiMC00MTRiLTk4NjktNGY4OWE2YzBlODljIiwiYXVkIjoiZmFzdGFwaS11c2VyczphdXRoIiwiZXhwIjoxNjAyOTg5MTE5fQ.gaMuaIzps8S9HlIUkn8gqKy-kahSHujC2wjrgO0NS6I'
+    LayoutService.getLayout(token).then(
+      (val) => {
+        setItems(val)
+    })
+  }, [])
 
   const tables = items.map((item, index) => {
     const { id, height, width, x, y, type, reserved, seats, tableId } = item;

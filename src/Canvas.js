@@ -8,6 +8,7 @@ import {
   wrapShape,
 } from 'react-shape-editor';
 import { Input, Label, List } from 'semantic-ui-react';
+import LayoutService  from './Services/LayoutService';
 import Table from './Components/Table'
 import Wall from './Components/Wall'
 import ModeDropdown from './Components/ModeDropdown'
@@ -35,6 +36,15 @@ const Editor = () => {
   const [selectedShapeIds, setSelectedShapeIds] = useState([]);
   const [mode, setMode] = useState('Table');
   const [seats, setSeats] = useState(4);
+
+  useEffect(() => {
+    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNjZlNDczMmYtMTdiMC00MTRiLTk4NjktNGY4OWE2YzBlODljIiwiYXVkIjoiZmFzdGFwaS11c2VyczphdXRoIiwiZXhwIjoxNjAyOTg5MTE5fQ.gaMuaIzps8S9HlIUkn8gqKy-kahSHujC2wjrgO0NS6I'
+    LayoutService.getLayout(token).then(
+      (val) => {
+        setItems(val)
+        console.log(items)
+    })
+  }, [])
 
   let idIterator = items.length;
   function handleCopy() {
