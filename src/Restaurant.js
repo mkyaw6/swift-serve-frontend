@@ -29,6 +29,7 @@ const Editor = (props) => {
     vectorHeight: 0,
     vectorWidth: 0,
   });
+  const [refresh, setRefresh] = useState(true);
   const [selectedShapeIds, setSelectedShapeIds] = useState([]);
   const [from, setFrom] = useState(getCurrDate());
   const [to, setTo] = useState(getHourFromNow());
@@ -119,6 +120,7 @@ const Editor = (props) => {
               setTo(e.target.value)
               updateAvailable()
             }}></input>  </List.Content></List.Item>
+            <List.Item> <List.Content> <button className="ui tiny blue button" onClick={()=>{setRefresh(!refresh)}}>Check Availability</button>  </List.Content></List.Item>
             <List.Item> <List.Content> 
               {selectedShapeIds.length > 0 ? 
                 <Link to={`/ordering/${selectedShapeIds[0]}/${from}/${to}`} className="ui tiny green button" > Reserve </Link>
