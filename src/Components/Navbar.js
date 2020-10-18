@@ -20,8 +20,8 @@ export default function Navbar(props) {
         <Link to="/home" class="item">Home </Link>
         {props.oauth == "" || props.oauth == undefined ? <Link to="/login" className="item">Login</Link>: null}
         {props.oauth != "" && props.oauth != undefined ? <Link onClick = {logout} to="/home" className = "item">Log Out</Link> : null}
-          {props.userType == <Link to="/layout" className="item"> "admin" </Link> ? "Manage Layout" : null}
-          {props.userType == <Link to="/layout" className="item"> "customer" </Link> ? "Reserve" : null}
+          {props.userType == "admin" ? <Link to="/layout" className="item">"Manage Layout" </Link> : null}
+          {props.userType == "customer" ? <Link to="/layout" className="item"> "Reserve" </Link> : null}
         {/* {props.userType == "admin" ? <a class="item">Edit Floor</a> : null} */}
           {props.userType == "admin" ? <Link to = "/viewschedule" className="item"> "View Schedule" </Link>: null}
         <span class="item right aligned">Logged in as: {props.userType} </span>
