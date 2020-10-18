@@ -21,7 +21,8 @@ export default function Navbar(props) {
         {props.oauth == "" || props.oauth == undefined ? <Link to="/login" className="item">Login</Link>: null}
         {props.oauth != "" && props.oauth != undefined ? <Link onClick = {logout} to="/home" className = "item">Log Out</Link> : null}
         <Link to="/layout" className="item">
-          {props.userType == "admin" ? "Manage Layout" : "Reserve"}
+          {props.userType == "admin" ? "Manage Layout" : ""}
+          {props.userType == "customer" ? "Reserve" : ""}
         </Link>
         {/* {props.userType == "admin" ? <a class="item">Edit Floor</a> : null} */}
         <Link to = "/viewschedule" className="item">
