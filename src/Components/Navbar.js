@@ -7,13 +7,19 @@ import {
 
 export default function Navbar(props) {
 
+  function logout(){
+    props.handleoAuth("")
+    props.handleUserType("Not logged in")
+  }
+
   return (
   <div class="ui borderless huge menu">
     <div class="ui container grid">
       <div class="computer only row">
         <a class="header item">SwiftServe</a>
         <Link to="/home" class="item">Home </Link>
-        {!props.loggedIn ? <Link to="/login" className="item">Login</Link>: null}
+        {props.oauth == "" ? <Link to="/login" className="item">Login</Link>: null}
+        {props.oauth != "" ? <Link onClick = {logout} to="/home" className = "item">Log Out</Link> : null}
         <Link to="/layout" className="item">
           {props.userType == "admin" ? "Manage Layout" : "Reserve"}
         </Link>

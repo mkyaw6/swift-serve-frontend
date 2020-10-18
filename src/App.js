@@ -27,10 +27,10 @@ export default function App() {
     // <Container class="center aligned"> 
     <div>
         <BrowserRouter>
-    <Navbar userType={userType}/>
+    <Navbar userType={userType} oauth = {oauth} handleoAuth = {handleoAuth} handleUserType = {handleUserType}/>
     <Switch>
       <Route path="/layout">
-        <Layout oauth = {oauth} handleoAuth = {handleoAuth} userType="admin"/>
+        <Layout oauth = {oauth} handleoAuth = {handleoAuth} userType={userType}/>
       </Route>
       <Route path="/login">
         <Login oauth = {oauth} handleoAuth = {handleoAuth} userType = {userType} handleUserType = {handleUserType}/>
@@ -39,7 +39,7 @@ export default function App() {
         <Ordering/>
       </Route>
       <Route path="/viewschedule">
-        <ViewSchedule/>
+        <ViewSchedule oauth = {oauth} />
       </Route>
       <Route path="/">
         <Login oauth = {oauth} handleoAuth = {handleoAuth} userType = {userType} handleUserType = {handleUserType}/>

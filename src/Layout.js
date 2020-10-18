@@ -4,7 +4,7 @@ import Editor from "./Canvas"
 import Restaurant from "./Restaurant"
 
 export default function Layout(props) {
-  let { userType } = props
+  let { userType } = props.userType
   return (
     <div>
       <Container class='grid middle aligned'> 
