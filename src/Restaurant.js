@@ -46,7 +46,8 @@ const Editor = (props) => {
               console.log(allStores[i])
             })
           })
-        setItems(allStores)
+        setItems(allStores);
+        setSelectedShapeIds([])
     })
   }, [])
 
