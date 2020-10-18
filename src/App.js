@@ -30,7 +30,7 @@ export default function App() {
     <Navbar userType={userType}/>
     <Switch>
       <Route path="/layout">
-        <Layout userType="customer"/>
+        <Layout userType="admin"/>
       </Route>
       <Route path="/login">
         <Login oauth = {oauth} handleoAuth = {handleoAuth} userType = {userType} handleUserType = {handleUserType}/>
