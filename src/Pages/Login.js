@@ -13,8 +13,14 @@ import React from "react";
 // import routes from "../nav/Router";
 // import {navigate, useRoutes} from "hookrouter";
 // import { scryRenderedDOMComponentsWithClass } from "react-dom/test-utils";
+import {navigate, useRoutes} from "hookrouter";
 import {Button} from "semantic-ui-react"
 import qs from "qs"
+import {
+  BrowserRouter,
+  Link,
+  Route,
+} from "react-router-dom";
 import "../App.css"
 const request = require('request')
 
@@ -38,7 +44,7 @@ export default function Login (props){
                 </div>
                 {/* <Button onClick = {() => navHandler("order")} variant = "contained" title="login">poog</Button> */}
                 <div class = "margins">
-                <Button oauth = {props.oauth} onClick = {handleSubmit}>Log In</Button>
+                <Link to = "/home"><Button oauth = {props.oauth} onClick = {handleSubmit}>Log In</Button></Link>
                 </div>
                 <div/>
                 <Button onClick = {toggleAcc}>No Account?</Button>
@@ -95,6 +101,7 @@ export default function Login (props){
           } else {
         // console.log(JSON.parse(body).access_token)
         props.handleoAuth(JSON.parse(body).access_token)
+        console.log(props.oauth);
         optionsTwo = {
           url: 'https://e09bbfe35b86.ngrok.io/auth', 
           headers: {

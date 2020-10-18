@@ -9,6 +9,7 @@ import {
 import './index.css';
 import Navbar from "./Components/Navbar"
 import Login from './Pages/Login'
+import Home from './Pages/Home'
 import Ordering from './Pages/Ordering'
 import * as serviceWorker from './serviceWorker';
 import ViewSchedule from './Pages/ViewSchedule'
@@ -41,8 +42,11 @@ export default function App() {
       <Route path="/viewschedule">
         <ViewSchedule oauth = {oauth} />
       </Route>
+      <Route path="/home">
+        <Home/>
+      </Route>
       <Route path="/">
-        <Login oauth = {oauth} handleoAuth = {handleoAuth} userType = {userType} handleUserType = {handleUserType}/>
+        <Home/>
       </Route>
     </Switch>
   </BrowserRouter>
