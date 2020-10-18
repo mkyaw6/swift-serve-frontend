@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import OrderDetailService from "../Services/OrderDetailService"
 import {useParams} from "react-router-dom"
-import {List} from "semantic-ui-react"
+import {List, Container} from "semantic-ui-react"
 import "../App.css"
 
 function getOrderItemList(order_items) {
   return order_items.map((item) => {
-    return <li> {item.item_id}, {item.quantity}x</li>
+    return <li> {item.name}, {item.quantity}x</li>
   })
 }
 export default function OrderDetail (props){
@@ -28,7 +28,8 @@ export default function OrderDetail (props){
     console.log(orderItems)
     return(
     <div>
-         <h1>Order Details:</h1>
+      <Container>
+         <h1 class="ncrLargeTitle">Order Details:</h1>
          <List>
           <List.Item>
             <List.Header>Order Id</List.Header>
@@ -43,6 +44,7 @@ export default function OrderDetail (props){
             {getOrderItemList(orderItems)}
           </List.Item>
         </List>
+      </Container>
     </div>)}
 
   

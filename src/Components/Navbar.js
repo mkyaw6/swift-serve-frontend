@@ -24,7 +24,7 @@ export default function Navbar(props) {
           {props.userType == "customer" ? <Link to="/layout" className="item"> Reserve </Link> : null}
         {/* {props.userType == "admin" ? <a class="item">Edit Floor</a> : null} */}
           {props.userType == "admin" ? <Link to = "/viewschedule" className="item"> View Schedule </Link>: null}
-        <span class="item right aligned">Logged in as: {props.userType} </span>
+          {props.userType !== "Not Logged in" ? <span class="item right aligned">Logged in as: {props.userType} </span> : null}
       </div>
     </div>
   </div>)
