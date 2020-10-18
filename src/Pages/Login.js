@@ -82,8 +82,32 @@ export default function Login (props){
             'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
           }
         }
+        var optionsTwo = ""
         request.post(options, function (error, response, body) {
-        console.error('error:', error); // Print the error if one occurred
+          if(error){
+            console.error('error here lol:', error); // Print the error if one occurred
+          }
+        // console.log(JSON.parse(body).access_token)
+        props.handleoAuth(JSON.parse(body).access_token)
+        optionsTwo = {
+          url: 'https://e09bbfe35b86.ngrok.io/auth', 
+          headers: {
+            "Authorization": "Bearer " + (JSON.parse(body).access_token)
+          }
+        };
+        request(optionsTwo, function (error, repsonse, body) {
+          if(error){
+          console.error('error there xd:', error);
+          }
+          // console.log(JSON.parse(body).is_owner)
+          if(JSON.parse(body).is_owner){
+            props.handleUserType("admin")
+          } else {
+            props.handleUserType("customer")
+          }
+        });
+          
+        // };
         // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         // console.log(response)
         // console.log(JSON.parse(body).access_token)
@@ -94,9 +118,8 @@ export default function Login (props){
         //   props.handleUserType("customer")
         //   console.log("customer")
         // }
-        props.handleUserType("admin")
-        props.handleoAuth(JSON.parse(body).access_token)
-        console.log(JSON.parse(body).access_token)
+        // props.handleUserType("admin")
+        // console.log(JSON.parse(body).access_token)
         });
         // props.handleoAuth(18)
         // console.log(email)
@@ -116,7 +139,9 @@ export default function Login (props){
       }
       if(pass === confirmPass){
         request.post(options, function (error, response, body){
+          if(error){
         console.error('error:', error);
+          }
 
         console.log((body))
         });
