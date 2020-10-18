@@ -23,12 +23,13 @@ function arrayReplace(arr, index, item) {
 
 
 
-const Editor = () => {
+const Editor = (props) => {
   const [items, setItems] = useState([
     { id: '0', x: 20, y: 120, width: 145, height: 140, type: 'Table', reserved: false, seats: 4, tableId: 1 },
     { id: '1', x: 15, y: 0, width: 150, height: 95, type: 'Wall' },
     { id: '2', x: 20, y: 300, width: 145, height: 140, type: 'Table', reserved: true, seats: 4, tableId: 2},
   ]);
+  const { oauth } = props
   const [{ vectorHeight, vectorWidth }, setVectorDimensions] = useState({
     vectorHeight: 0,
     vectorWidth: 0,
@@ -38,8 +39,7 @@ const Editor = () => {
   const [seats, setSeats] = useState(4);
 
   useEffect(() => {
-    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNjZlNDczMmYtMTdiMC00MTRiLTk4NjktNGY4OWE2YzBlODljIiwiYXVkIjoiZmFzdGFwaS11c2VyczphdXRoIiwiZXhwIjoxNjAyOTg5MTE5fQ.gaMuaIzps8S9HlIUkn8gqKy-kahSHujC2wjrgO0NS6I'
-    LayoutService.getLayout(token).then(
+    LayoutService.getLayout(oauth).then(
       (val) => {
         setItems(val)
         console.log(items)
