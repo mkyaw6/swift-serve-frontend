@@ -39,15 +39,19 @@ const LayoutService = {
     };
     
     let result = await request('https://e09bbfe35b86.ngrok.io/store/1/table',options);
+    let output = []
     // console.log(result.body)
-    const output = JSON.parse(result.body).tables.map((item) => {
-      const { store_id, x_coords, y_coords, width, height, cap, internal_id, id } = item
-      let isTable = internal_id == 'Table'
-      if (isTable) {
-        tableId += 1
-      }
-      return { id: id.toString(), x: x_coords, y: y_coords, width, height, type: internal_id, seats: cap, tableId: isTable ? tableId : 0}
-    })
+    result = JSON.parse(result.body)
+    if (result.tables) {
+      output = result.tables.map((item) => {
+        const { store_id, x_coords, y_coords, width, height, cap, internal_id, id } = item
+        let isTable = internal_id == 'Table'
+        if (isTable) {
+          tableId += 1
+        }
+        return { id: id.toString(), x: x_coords, y: y_coords, width, height, type: internal_id, seats: cap, tableId: isTable ? tableId : 0}
+      })
+    }
     // console.log(output)
     return output
   },
@@ -60,6 +64,5 @@ const LayoutService = {
     
   } 
 }
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNjZlNDczMmYtMTdiMC00MTRiLTk4NjktNGY4OWE2YzBlODljIiwiYXVkIjoiZmFzdGFwaS11c2VyczphdXRoIiwiZXhwIjoxNjAyOTg5MTE5fQ.gaMuaIzps8S9HlIUkn8gqKy-kahSHujC2wjrgO0NS6I'
 
 export default LayoutService;

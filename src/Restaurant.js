@@ -18,10 +18,11 @@ function constrainResize(item) {
   return { x:item.originalMovingCorner.x, y:item.originalMovingCorner.y}
 }
 
-const Editor = () => {
+const Editor = (props) => {
   const [items, setItems] = useState(
     [{"id":"0","x":9,"y":12,"width":86,"height":84,"type":"Table","reserved":false,"seats":4,"tableId":1},{"id":"1","x":243,"y":-9,"width":23,"height":204,"type":"Wall"},{"id":"2","x":10,"y":112,"width":87,"height":91,"type":"Table","reserved":true,"seats":4,"tableId":2},{"id":"3","x":137,"y":16,"width":82,"height":79,"type":"Table","reserved":false,"seats":4,"tableId":3},{"id":"4","x":134,"y":107,"width":94,"height":97,"type":"Table","reserved":false,"seats":4,"tableId":4},{"id":"5","x":285,"y":12,"width":91,"height":92,"type":"Table","reserved":false,"seats":4,"tableId":5},{"id":"6","x":400,"y":11,"width":92,"height":90,"type":"Table","reserved":false,"seats":4,"tableId":6},{"id":"7","x":525,"y":-1,"width":23,"height":204,"type":"Wall","tableId":7},{"id":"8","x":290,"y":122.296875,"width":195,"height":79,"type":"Table","reserved":false,"seats":4,"tableId":7},{"id":"9","x":122,"y":253,"width":94,"height":97,"type":"Table","reserved":false,"seats":4,"tableId":8},{"id":"10","x":267,"y":366,"width":94,"height":97,"type":"Table","reserved":false,"seats":4,"tableId":9},{"id":"11","x":405,"y":261,"width":94,"height":97,"type":"Table","reserved":false,"seats":4,"tableId":10},{"id":"12","x":24,"y":373,"width":94,"height":97,"type":"Table","reserved":false,"seats":4,"tableId":11}]
   );
+  const { oauth } = props
   const [{ vectorHeight, vectorWidth }, setVectorDimensions] = useState({
     vectorHeight: 0,
     vectorWidth: 0,
@@ -31,8 +32,7 @@ const Editor = () => {
   const [to, setTo] = useState(getCurrDate());
 
   useEffect(() => {
-    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNjZlNDczMmYtMTdiMC00MTRiLTk4NjktNGY4OWE2YzBlODljIiwiYXVkIjoiZmFzdGFwaS11c2VyczphdXRoIiwiZXhwIjoxNjAyOTg5MTE5fQ.gaMuaIzps8S9HlIUkn8gqKy-kahSHujC2wjrgO0NS6I'
-    LayoutService.getLayout(token).then(
+    LayoutService.getLayout(oauth).then(
       (val) => {
         setItems(val)
     })
