@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 // import {navigate, useRoutes} from "hookrouter";
 import {Button} from "semantic-ui-react"
 // <<<<<<< main
-// import {useParams} from "react-router-dom"
+import {useParams} from "react-router-dom"
 // =======
 // import "../App.css"
 // >>>>>>> ryan2  removed in a merge
