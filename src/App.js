@@ -11,6 +11,7 @@ import Navbar from "./Components/Navbar"
 import Login from './Pages/Login'
 import Ordering from './Pages/Ordering'
 import * as serviceWorker from './serviceWorker';
+import ViewSchedule from './Pages/ViewSchedule'
 export default function App() {
   const [oauth, setOAuth] = React.useState("")
   const [userType, setUserType] = React.useState("Not Logged in")
@@ -36,6 +37,9 @@ export default function App() {
       </Route>
       <Route path="/ordering">
         <Ordering/>
+      </Route>
+      <Route path="/viewschedule">
+        <ViewSchedule/>
       </Route>
       <Route path="/">
         <Login oauth = {oauth} handleoAuth = {handleoAuth} userType = {userType} handleUserType = {handleUserType}/>

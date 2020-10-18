@@ -27,9 +27,9 @@ export default function Login (props){
     if (hasAcc === true){
         return(
             <div>
-                <input onChange = {(e) => handleEmail(e)} label = "email"/>
+                <input placeholder = "email" onChange = {(e) => handleEmail(e)} label = "email"/>
                 <div/>
-                <input onChange = {(e) => handlePass(e)} label = "pass"/>
+                <input placeholder = "pass" onChange = {(e) => handlePass(e)} label = "pass"/>
                 <div>
                 </div>
                 {/* <Button onClick = {() => navHandler("order")} variant = "contained" title="login">poog</Button> */}
@@ -41,13 +41,13 @@ export default function Login (props){
         } else {
             return(
                 <div>
-                <input onChange = {(e) => handleEmail(e)} label = "email"/>
+                <input placeholder = "email" onChange = {(e) => handleEmail(e)} label = "email"/>
                 <div/>
-                <input onChange = {(e) => handlePass(e)} label = "password"/>
+                <input placeholder = "Password" onChange = {(e) => handlePass(e)} label = "password"/>
                 <div/>
-                <input onChange = {(e) => handleConfirmPass(e)} label = "confirm password"/>
+                <input placeholder = "Confirm Password" onChange = {(e) => handleConfirmPass(e)} label = "confirm password"/>
                 <div/>
-                <Button onClick = {register}>Register</Button>
+                <Button onClick = {handleRegister}>Register</Button>
                 <div/>
                 <Button onClick = {toggleAcc}>Have an Account?</Button>
                 </div>
@@ -57,14 +57,6 @@ export default function Login (props){
     function toggleAcc(){
         setHasAcc(!hasAcc)
         console.log(hasAcc)
-    }
-
-    function register(){
-        if(pass === confirmPass && pass !== ""){
-            console.log(email, " has Registered!")
-        } else {
-            console.log("Registration failed")
-        }
     }
 
     function handleEmail(e){
@@ -110,6 +102,27 @@ export default function Login (props){
         // console.log(email)
         // // console.log(pass)
         // console.log(props.oauth)
+    }
+
+    function handleRegister(){
+      const options = {
+        url: 'https://e09bbfe35b86.ngrok.io/auth/register',
+        body: JSON.stringify({
+          "email": email,
+          "is_owner": false,
+          "username": email,
+          "password": pass
+        })
+      }
+      if(pass === confirmPass){
+        request.post(options, function (error, response, body){
+        console.error('error:', error);
+
+        console.log((body))
+        });
+      } else {
+        console.log("passwords dont match")
+      }
     }
 
     // function navHandler(e){
