@@ -43,10 +43,21 @@ async function saveItem(item, token) {
     }
     // console.log(result.body)
   }
+function convertItems(tables) {
+  let tableId = 0
+  const output = tables.map((item) => {
+      const { store_id, x_coords, y_coords, width, height, cap, internal_id, id } = item
+      let isTable = internal_id == 'Table'
+      if (isTable) {
+        tableId += 1
+      }
+      return { id: id.toString(), x: x_coords, y: y_coords, width, height, type: internal_id, seats: cap, tableId: isTable ? tableId : 0}
+    });
+  return output
+}
 
 const LayoutService = {
   getLayout: async (token) => {
-    let tableId = 0
     const options = {
       // url: 'https://e09bbfe35b86.ngrok.io/store/1/table',
       headers: {
@@ -59,14 +70,7 @@ const LayoutService = {
     // console.log(result.body)
     result = JSON.parse(result.body)
     if (result.tables) {
-      output = result.tables.map((item) => {
-        const { store_id, x_coords, y_coords, width, height, cap, internal_id, id } = item
-        let isTable = internal_id == 'Table'
-        if (isTable) {
-          tableId += 1
-        }
-        return { id: id.toString(), x: x_coords, y: y_coords, width, height, type: internal_id, seats: cap, tableId: isTable ? tableId : 0}
-      })
+      output = convertItems(result.tables)
     }
     // console.log(output)
     return output
