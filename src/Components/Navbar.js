@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 export default function Navbar(props) {
+
   return (
   <div class="ui borderless huge menu">
     <div class="ui container grid">
@@ -17,6 +18,9 @@ export default function Navbar(props) {
           {props.userType == "admin" ? "Manage Layout" : "Reserve"}
         </Link>
         {/* {props.userType == "admin" ? <a class="item">Edit Floor</a> : null} */}
+        <Link to = "/viewschedule" className="item">
+          {props.userType == "admin" ? "View Schedule": ""}
+        </Link>
         <span class="item right aligned">Logged in as: {props.userType} </span>
       </div>
     </div>
