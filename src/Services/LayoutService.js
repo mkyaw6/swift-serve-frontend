@@ -28,6 +28,22 @@ async function saveItem(item, token) {
     console.log(result.body)
   }
 
+  async function clearItems(token) {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Authorization': "Bearer " + token
+      }
+    };
+    let result
+    try {
+      result = await request('https://e09bbfe35b86.ngrok.io/store/1/table',options);
+    } catch(err) {
+      console.log(err)
+    }
+    // console.log(result.body)
+  }
+
 const LayoutService = {
   getLayout: async (token) => {
     let tableId = 0
@@ -56,12 +72,12 @@ const LayoutService = {
     return output
   },
   saveLayout: async(items, token) => {
+    clearItems(token)
     items.forEach(async item => {
       await saveItem(item, token)
     })
 
     // let result = await request('https://e09bbfe35b86.ngrok.io/store/1/table',options).body;
-    
   } 
 }
 

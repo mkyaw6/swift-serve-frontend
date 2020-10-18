@@ -60,8 +60,9 @@ const Editor = (props) => {
     }
   }
 
-  function handleSave() {
-    console.log(items)
+  async function handleSave() {
+    await LayoutService.saveLayout(items, oauth);
+    console.log('DOne')
   }
 
   function getTableId() {
